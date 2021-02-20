@@ -1,0 +1,29 @@
+apiVersion: v1.1
+resources:
+  - name: containerEnvExample
+    type: declarativesystems/ContainerEnv
+    configuration:
+      sourceArtifactory: artifactory
+pipelines:
+  - name: piplinesExampleContainerEnv
+    configuration:
+      runtime:
+        type: image
+        image:
+          custom:
+            name: declarativesystems.jfrog.io/docker-local/pipelines
+            tag: 0.7.0-27
+            registry: artifactory
+            sourceRepository: docker-local
+    steps:
+      - name: buildAndPushContainerImage
+        type: Bash
+        configuration:
+          integrations:
+            - name: artifactory
+          inputResources:
+            - name: containerEnvExample
+        execution:
+          onExecute:
+            - podman build . -t declarativesystems.jfrog.io/docker-local/example:example
+            - podman push declarativesystems.jfrog.io/docker-local/example:example
