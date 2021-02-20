@@ -10,7 +10,7 @@ resources:
       gitProvider: githubAccountGeoffwilliams
       path: declarativesystems/pipelines_example_containerenv
 pipelines:
-  - name: piplinesExampleContainerEnv
+  - name: pipelinesExampleContainerEnv
     configuration:
       runtime:
         type: image
