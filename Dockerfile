@@ -4,5 +4,4 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # usable apt proves buildah/podman working in containerised environment
 RUN apt update \
-    && apt install -y curl bzip2 \
-    && apt clean
+    && apt install -y curl bzip2
