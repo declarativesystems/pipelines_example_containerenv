@@ -4,6 +4,11 @@ resources:
     type: declarativesystems/ContainerEnv
     configuration:
       sourceArtifactory: artifactory
+  - name: gitPipelinesExampleContainerEnv
+    type: GitRepo
+    configuration:
+      gitProvider: githubAccountGeoffwilliams
+      path: declarativesystems/pipelines_example_containerenv
 pipelines:
   - name: piplinesExampleContainerEnv
     configuration:
@@ -23,7 +28,9 @@ pipelines:
             - name: artifactory
           inputResources:
             - name: containerEnvExample
+            - name: gitPipelinesExampleContainerEnv
         execution:
           onExecute:
+            - cd ${res_gitPipelinesExampleContainerEnv_resourcePath}
             - podman build . -t declarativesystems.jfrog.io/docker-local/example:example
             - podman push declarativesystems.jfrog.io/docker-local/example:example
