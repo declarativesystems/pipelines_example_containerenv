@@ -1,3 +1,29 @@
+# JFrog Pipelines ContainerEnv example
+
+## Building Locally
+
+**Image**
+
+```shell
+make
+```
+
+The image can be pushed with
+
+```shell
+make push
+```
+
+Which implies `make image`.
+
+## Building in JFrog Pipelines
+
+```shell
+git push origin master
+```
+
+Will trigger a build, using the same scripts that run locally.
+
 # FAQ
 
 Q: Can I use `podman` instead of `buildah`?
