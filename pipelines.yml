@@ -32,5 +32,8 @@ pipelines:
         execution:
           onExecute:
             - cd ${res_gitPipelinesExampleContainerEnv_resourcePath}
-            - podman build . -t declarativesystems.jfrog.io/docker-local/example:example
+            - buildah bud \
+              -f Dockerfile \
+              --squash \
+              -t declarativesystems.jfrog.io/docker-local/example:example
             - podman push declarativesystems.jfrog.io/docker-local/example:example
